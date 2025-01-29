@@ -1,22 +1,42 @@
 <div class="container">
-    <h2>Lista de Candidatos</h2>
-    <table>
-      <tr>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Partido</th>
-        <th>Binomio</th>
-        <th>Acciones</th>
-      </tr>
-      <tr *ngFor="let candidato of candidatos">
-        <td>{{ candidato.nombre }}</td>
-        <td>{{ candidato.apellido }}</td>
-        <td>{{ candidato.partido }}</td>
-        <td>{{ candidato.binomio.nombre }} {{ candidato.binomio.apellido }}</td>
-        <td>
-          <button (click)="eliminarCandidato(candidato.id)">Eliminar</button>
-        </td>
-      </tr>
-    </table>
-  </div>
-  
+  <h2>Ingresar Candidato</h2>
+  <form (ngSubmit)="agregarCandidato()">
+    
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" [(ngModel)]="nuevoCandidato.nombre" name="nombre" required />
+
+    <label for="apellido">Apellido:</label>
+    <input type="text" id="apellido" [(ngModel)]="nuevoCandidato.apellido" name="apellido" required />
+
+    <label for="partido">Partido:</label>
+    <input type="text" id="partido" [(ngModel)]="nuevoCandidato.partido" name="partido" required />
+
+    <label for="binomioNombre">Nombre Binomio:</label>
+    <input type="text" id="binomioNombre" [(ngModel)]="nuevoCandidato.binomio.nombre" name="binomioNombre" required />
+
+    <label for="binomioApellido">Apellido Binomio:</label>
+    <input type="text" id="binomioApellido" [(ngModel)]="nuevoCandidato.binomio.apellido" name="binomioApellido" required />
+
+    <button type="submit">Agregar Candidato</button>
+  </form>
+
+  <h2>Lista de Candidatos</h2>
+  <table>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Partido</th>
+      <th>Binomio</th>
+      <th>Acciones</th>
+    </tr>
+    <tr *ngFor="let candidato of candidatos">
+      <td>{{ candidato.nombre }}</td>
+      <td>{{ candidato.apellido }}</td>
+      <td>{{ candidato.partido }}</td>
+      <td>{{ candidato.binomio.nombre }} {{ candidato.binomio.apellido }}</td>
+      <td>
+        <button (click)="eliminarCandidato(candidato.nombre)">Eliminar</button>
+      </td>
+    </tr>
+  </table>
+</div>
